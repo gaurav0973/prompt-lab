@@ -5,7 +5,7 @@ import {
 import { getChatModel } from "@/features/ai/utils/model";
 import { getCurrentAuthenticatedUser } from "@/features/auth/action/get-current-authenticated-user";
 import { prisma } from "@/lib/db";
-import { convertToModelMessages, createIdGenerator, createUIMessageStreamResponse, streamText, toUIMessageStream, toUIMessageStream } from "ai";
+import { convertToModelMessages, createIdGenerator, createUIMessageStreamResponse, streamText, toUIMessageStream } from "ai";
 import { NextResponse } from "next/server";
 
 /**

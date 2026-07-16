@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import { syncAuthenticatedUserToDatabase } from "./onboard";
 import { auth } from "@clerk/nextjs/server";
 
 export async function getCurrentAuthenticatedUser() {
@@ -7,7 +8,7 @@ export async function getCurrentAuthenticatedUser() {
         where: { clerkId: userId },
     });
     if (!user) {
-        throw new Error("User not found. Complete onboarding first.");
+        return syncAuthenticatedUserToDatabase();
     }
     return user;
 }

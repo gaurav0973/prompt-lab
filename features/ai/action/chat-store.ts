@@ -27,7 +27,7 @@ export interface UIMessage {
  * If structured parts already exist, they are returned.
  * Otherwise, a single text part is created from the fallback content.
  */
-export function buildUIMessageParts(
+function buildUIMessageParts(
     storedParts: Prisma.JsonValue | null,
     fallbackContent: string,
 ): UIMessagePart[] {
@@ -72,7 +72,7 @@ export async function getConversationMessages(
  * Extracts plain text from a UI message by joining
  * all text parts together.
  */
-export function extractMessageText(message: UIMessage): string {
+function extractMessageText(message: UIMessage): string {
     return message.parts
         .filter(isTextUIPart)
         .map((part) => part.text)
