@@ -70,11 +70,11 @@ export default function HomePage() {
                         <section className="mx-auto max-w-4xl px-6 pt-20 pb-24 text-center md:pt-32 md:pb-32">
                             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/50 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur-sm">
                                 <SparklesIcon className="size-4 text-primary" />
-                                <span>AI-powered prompt engineering</span>
+                                <span>Your intelligent AI assistant</span>
                             </div>
 
                             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                                Craft smarter prompts
+                                Get answers instantly
                                 <br />
                                 <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
                                     with PromptLab
@@ -82,9 +82,7 @@ export default function HomePage() {
                             </h1>
 
                             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                                Your personal AI workspace for experimenting, refining,
-                                and perfecting prompts. Chat with AI models, iterate in
-                                real time, and save your best conversations.
+                                Ask questions, explore ideas, and get instant intelligent answers. Chat with advanced AI models in real time and save your conversations seamlessly.
                             </p>
 
                             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

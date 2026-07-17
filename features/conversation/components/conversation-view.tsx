@@ -4,7 +4,8 @@ import { SidebarTrigger } from '@/components/ui/sidebar';
 import { useQueryClient } from '@tanstack/react-query';
 import { DefaultChatTransport, type UIMessage } from 'ai';
 import { useChat } from "@ai-sdk/react"
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect, useRef } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useConversations } from '../hooks/use-conversation';
 import { queryKeys } from '../utils/query-keys';
 import { toast } from 'sonner';
@@ -49,6 +50,19 @@ export const ConversationView = ({ conversationId, initialMessages }: Conversati
     })
     const title =
     conversations?.find((item) => item.id === conversationId)?.title ?? "Chat";
+
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const hasSentInitialRef = useRef(false);
+
+    useEffect(() => {
+        const q = searchParams?.get("q");
+        if (q && messages.length === 0 && status === "ready" && !hasSentInitialRef.current) {
+            hasSentInitialRef.current = true;
+            void sendMessage({ text: q });
+            router.replace(`/c/${conversationId}`);
+        }
+    }, [searchParams, messages.length, status, sendMessage, router, conversationId]);
 
     return (
         <div className="flex h-full min-h-0 flex-1 flex-col">

@@ -30,12 +30,20 @@ export function useCreateConversation() {
     const router = useRouter();
 
     return useMutation({
-        mutationFn: (title?: string) => createConversation(title),
-        onSuccess: (conversation) => {
+        mutationFn: async (initialMessage?: string) => {
+            const conversation = await createConversation(initialMessage);
+            return { conversation, initialMessage };
+        },
+        onSuccess: ({ conversation, initialMessage }) => {
             void queryClient.invalidateQueries({
                 queryKey: queryKeys.conversations.all,
             });
-            router.push(`/c/${conversation.id}`);
+            
+            const url = initialMessage 
+                ? `/c/${conversation.id}?q=${encodeURIComponent(initialMessage)}` 
+                : `/c/${conversation.id}`;
+                
+            router.push(url);
         },
         onError: (error: Error) => {
             toast.error(error.message || "Could not create chat");
