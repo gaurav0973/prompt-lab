@@ -67,10 +67,10 @@ export async function POST(req: Request) {
         model: getChatModel(conversation.model),
         system:
             conversation.systemPrompt ??
-            "You are ChaiGpt , a helpful assistant",
+            "You are PromptLab, a helpful assistant",
         messages: await convertToModelMessages(conversationHistory),
     });
-    result.consumeStream();
+    // removed result.consumeStream() to allow the stream to flow to the client
 
     return createUIMessageStreamResponse({
         stream: toUIMessageStream({
